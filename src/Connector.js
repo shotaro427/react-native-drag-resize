@@ -95,10 +95,26 @@ export class Connector extends Component {
 
   render() {
     const {
+      type,
       x,
       y,
       size,
     } = this.props;
+
+    if (type === 'c') {
+      return (
+        <View 
+          style={{
+            position: 'absolute',
+            left: x,
+            top: y,
+            width: '75%',
+            height: '75%',
+            backgroundColor: 'transparent'
+          }}
+        />
+      );
+    }
 
     return (
       <View
@@ -109,7 +125,7 @@ export class Connector extends Component {
           width: size,
           height: size,
           borderWidth: 2,
-          borderColor: 'black',
+          borderColor: 'white',
           backgroundColor: 'white'
         }}
         {...this._panResponder.panHandlers}
@@ -119,6 +135,7 @@ export class Connector extends Component {
 }
 
 Connector.propTypes = {
+  type: PropTypes.string,
   x: PropTypes.number,
   y: PropTypes.number,
   size: PropTypes.number,
