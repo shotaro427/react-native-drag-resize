@@ -276,6 +276,7 @@ export class DragResizeBlock extends Component {
 
   onResizeTM = (coord) => {
     const {
+      minW,
       minH,
       axis,
       isResizable,
@@ -655,11 +656,12 @@ export class DragResizeBlock extends Component {
   renderConnectors = () => {
     const {
       connectors,
+      isObjectActive
     } = this.props;
 
     const {
       w,
-      h,
+      h
     } = this.state;
 
     return connectors.map((connectorType) => {
@@ -673,6 +675,7 @@ export class DragResizeBlock extends Component {
           onStart={this.connectorsMap[connectorType].onStart}
           onMove={this.connectorsMap[connectorType].onMove}
           onEnd={this.connectorsMap[connectorType].onEnd}
+          isObjectActive={isObjectActive}
         />
       );
     });
@@ -683,6 +686,7 @@ export class DragResizeBlock extends Component {
       children,
       isDisabled,
       zIndex,
+      isObjectActive
     } = this.props;
 
     const {
@@ -690,7 +694,7 @@ export class DragResizeBlock extends Component {
       y,
       w,
       h,
-      isSelected,
+      isSelected
     } = this.state;
 
     return (
@@ -703,6 +707,8 @@ export class DragResizeBlock extends Component {
           height: h,
           padding: CONNECTOR_SIZE / 2,
           zIndex: isSelected ? zIndex + 1 : zIndex,
+          borderColor: (isObjectActive) ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
+          borderWidth: 4,
         }}
       >
         <TouchableWithoutFeedback
@@ -786,6 +792,8 @@ DragResizeBlock.propTypes = {
   isDisabled: PropTypes.bool,
   isDraggable: PropTypes.bool,
   isResizable: PropTypes.bool,
+  isObjectActive: PropTypes.bool,
+  isMovableTogether: PropTypes.bool,
   connectors: PropTypes.array,
 
   onPress: PropTypes.func,

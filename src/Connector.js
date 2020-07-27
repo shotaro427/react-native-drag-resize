@@ -102,35 +102,196 @@ export class Connector extends Component {
     } = this.props;
 
     if (type === 'c') {
+      console.log(type);
+      console.log(this._panResponder.panHandlers);
       return (
-        <View 
+        <View
           style={{
             position: 'absolute',
-            left: x,
-            top: y,
-            width: '75%',
-            height: '75%',
+            top: 7,
+            left: 7,
+            width: '100%',
+            height: '100%',
             backgroundColor: 'transparent'
+          }}
+          {...this._panResponder.panHandlers}
+        />
+      );
+    }
+
+    if (['ml', 'mr'].includes(type)) {
+      return (
+        <View
+          style={{
+            position: 'absolute',
+            left: (type === 'ml') ? ( x - 4 ) : ( x + 6 ),
+            top: ( y - ( y * 0.3 ) + 4.5 ),
+            width: 4.5,
+            height: '30%',
+            backgroundColor: 'white'
+          }}
+          {...this._panResponder.panHandlers}
+        />
+      );
+    }
+
+    if (['tm', 'bm'].includes(type)) {
+      console.log(type);
+      console.log(this._panResponder.panHandlers);
+      return (
+        <View
+          {...this._panResponder.panHandlers}
+          style={{
+            position: 'absolute',
+            left: ( x - (x * 0.30) + 4.5 ),
+            top: (type === 'tm') ? ( y - 4.5 ) : ( y + 6.5 ),
+            width: '30%',
+            height: 4.5,
+            backgroundColor: 'white',
+            zIndex: 100
           }}
         />
       );
     }
 
-    return (
-      <View
-        style={{
+    if (type === 'bl') {
+      return (
+        <View style={{
           position: 'absolute',
-          left: x,
-          top: y,
-          width: size,
-          height: size,
-          borderWidth: 2,
-          borderColor: 'white',
-          backgroundColor: 'white'
-        }}
-        {...this._panResponder.panHandlers}
-      />
-    );
+          left: ( x - 4 ),
+          top: ( y - ( y * 0.15 ) + 11 ),
+          width: '15%',
+          height: '15%',
+          backgroundColor: 'transparent',
+          zIndex: -1000
+        }}>
+        <View
+          style={{
+            width: 4.5,
+            top: 0,
+            height: '100%',
+            backgroundColor: 'white'
+          }}
+          {...this._panResponder.panHandlers}
+        />
+        <View
+          style={{
+            top: -4.5,
+            width: '100%',
+            height: 4.5,
+            backgroundColor: 'white'
+          }}
+          {...this._panResponder.panHandlers}
+        />
+      </View>
+      );
+    }
+
+    if (type === 'br') {
+      return (
+        <View style={{
+          position: 'absolute',
+          left: ( x - ( x * 0.15 ) + 11.5),
+          top: ( y - ( y * 0.15 ) + 11.5 ),
+          width: '15%',
+          height: '15%',
+          backgroundColor: '',
+          zIndex: -1000
+        }}>
+          <View
+            style={{
+              top: -1,
+              left: ( (x * 0.15) - 4.5 ),
+              width: 4.5,
+              height: '100%',
+              backgroundColor: 'white'
+            }}
+            {...this._panResponder.panHandlers}
+          />
+          <View
+            style={{
+              position: 'absolute',
+              top: (y - ( y * 0.85) - 6),
+              left: 0,
+              width: '100%',
+              height: 4.5,
+              backgroundColor: 'white'
+            }}
+            {...this._panResponder.panHandlers}
+          />
+        </View>
+      );
+    }
+
+    if (type === 'tl') {
+      return (
+        <View style={{
+          position: 'absolute',
+          left: ( x - ( x * 0.15 ) - 4.5 ),
+          top: ( y - 4.5 ),
+          width: '15%',
+          height: '15%' ,
+          backgroundColor: 'transparent',
+          zIndex: -1000
+        }}>
+        <View
+          style={{
+            left: x, 
+            top: ( y - ( y * 0.15 ) ),
+            width: 4.5,
+            height: '100%',
+            backgroundColor: 'white'
+          }}
+          {...this._panResponder.panHandlers}
+        />
+        <View
+          style={{
+            left: x,
+            top: '-100%',
+            width: '100%',
+            height: 4.5,
+            backgroundColor: 'white'
+          }}
+          {...this._panResponder.panHandlers}
+        />
+      </View>
+      );
+    }
+
+    if (type === 'tr') {
+      return (
+        <View style={{
+          position: 'absolute',
+          left: ( x - ( x * 0.15 ) + 11.5),
+          top: ( y - 4.5 ),
+          width: '15%',
+          height: '15%',
+          backgroundColor: 'transparent',
+          zIndex: -1000
+        }}>
+          <View
+            style={{
+              left: ( (x * 0.15) - 4.5 ),
+              top: y,
+              width: 4.5,
+              height: '100%',
+              backgroundColor: 'white'
+            }}
+            {...this._panResponder.panHandlers}
+          />
+          <View
+            style={{
+              left: 0,
+              top: '-100%',
+              width: '100%',
+              height: 4.5,
+              backgroundColor: 'white'
+            }}
+            {...this._panResponder.panHandlers}
+          />
+        </View>
+      );
+    }
   }
 }
 
